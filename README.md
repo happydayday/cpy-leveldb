@@ -14,11 +14,14 @@ First of all, you need to build the included snappy and  leveldb library.
 
 
 # 1.2 Build LevelDB #
+	make sure to use -fPIC build LevelDB
     $ cd leveldb
-    $ make 
+    $ make
 
 # 1.3 Then, build the extension itself #
-
+	$ mkdir leveldb
+	$ cp -a PATH_TO_libleveldb.a leveldb/
+	$ cp -a PATH_TO_leveldb/include leveldb/include
     $ python setup.py build
 
 
@@ -39,7 +42,7 @@ First of all, you need to build the included snappy and  leveldb library.
     >>> batch = leveldb.WriteBatch()
     >>> for i in xrange(20):
     ... batch.Put(str(i), "hello world %i" % i)
-    ... 
+    ...
     >>> db.Get("2")
     '222'
     >>> db.Get("5")
